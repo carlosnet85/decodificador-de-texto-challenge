@@ -1,0 +1,222 @@
+body {
+	background: #dedede;
+	transition: 1s all;
+}
+
+button, textarea, body {
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+.esconder {
+	display: none;
+}
+
+.fundo-branco {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: #ffffff;
+	padding: 10vw 2vw; 
+	width: 50vw;
+	box-shadow: 0 0 3vw rgb(145 145 145);
+	transition: 500ms all;
+}
+
+#titulo {
+	position: fixed;
+	color: #0066cc;
+	top: 32.5vh; 
+	left: 50vw;
+	transform: translate(-50%, -50%);
+	font-size: 1.6vw; 
+	font-weight: bold;
+}
+
+#descricao {
+	position: fixed;
+	color: #073f77;
+	top: 35.5vh; 
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 0.9vw; 
+}
+
+#botao-criptografar, #botao-descriptografar, #botao-copiar, #botao-limpar, #botao-alternar-tema {
+	position: absolute;
+	top: 63%;
+	left: 58.6%;
+	width: 10vw; 
+	padding: 0.6vw; 
+	padding-left: 2.3vw;
+	background: #0066cc;
+	color: white;
+	font-size: 1vw;
+	cursor: pointer;
+	z-index: 1;
+	transition: 400ms all;
+	border: none;
+	border-radius: 10px;
+}
+
+#botao-copiar {
+	width: 2vw;
+	font-size: 0.8vw; 
+	padding: 0.43vh;
+	padding-left: 2px;
+	left: 33.4vw;
+}
+
+#botao-copiar::before {
+	position: absolute;
+	content: "Copiar?";
+	top: 50%;
+	left: 35%;
+	transform: translate(-50%, -50%);
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out;
+}
+
+#botao-copiar:hover::before {
+	opacity: 1;
+}
+
+#botao-copiar:hover {
+	background: green;
+	width: 8vw;
+	padding-right: 190px;
+}
+
+#botao-copiar:active {
+	transition: 100ms all;
+	background: #ffa30f;
+}
+
+#botao-limpar {
+	width: 2vw;
+	padding: 3px;
+	padding-top: 4px;
+	left: 31.1vw; 
+    transition: 400ms all;
+}
+
+#botao-limpar:hover {
+	background: #ff1e1e;
+}
+
+#botao-limpar:active {
+	transition: 100ms all;
+	transform: rotate(-30deg);
+}
+
+#botao-trocar-funcao {
+	position: fixed;
+	padding: 1vw 0;
+	border: none;
+	background: none;
+	left: 59.1%; 
+	top: 61.7%; 
+	transition: transform 2s;
+	cursor: pointer;
+	z-index: 1;
+}
+
+#botao-trocar-funcao:hover {
+	transform: rotate(90deg);
+}
+
+#botao-alternar-tema {
+	width: 2vw;
+	padding: 0.38vh;
+	padding-left: 4px;
+	left: 51.3vw;
+}
+
+#botao-alternar-tema:hover {
+	background: #ff69b4;
+}
+
+#area-entrada, #area-resultado {
+	position: fixed;
+	resize: none;
+	background: #f6f8ff;
+	font-size: 1.1vw; 
+	height: 10vw; 
+	width: 15vw; 
+	padding: 1vw;
+	top: 50%;
+	left: 40%;
+	transform: translate(-50%, -50%);
+	border: 2px solid #064fac;
+	outline: none;
+}
+
+#area-resultado {
+	left: 60%;
+    word-wrap: break-word;
+	max-height: 200px; 
+    overflow: auto; 
+}
+
+footer {
+	position: fixed;
+	top: 99%;
+	left: 50%;
+	color: #3c3636;
+	transform: translate(-50%, -50%);
+	font-size: 0.8vw;
+}
+
+/* Tema escuro */
+body.escuro {
+	background-color: #1c1c1c;
+}
+
+body.escuro .fundo-branco {
+	background-color: #343434;
+	box-shadow: 0 0 2vw rgb(21 21 21);
+}
+
+body.escuro #botao-criptografar,
+body.escuro #botao-descriptografar,
+body.escuro #botao-copiar,
+body.escuro #botao-limpar,
+body.escuro #botao-alternar-tema {
+	background-color: #ff69b4;
+}
+
+body.escuro #titulo {
+	color: #cc007b;
+}
+
+body.escuro #descricao {
+	color: #b35192;
+}
+
+body.escuro #area-entrada,
+body.escuro #area-resultado {
+	background: #faeafa;
+	border: 2px solid #ff69b4;
+}
+
+body.escuro #botao-copiar:hover {
+	background: green;
+	width: 8vw;
+	padding-right: 190px;
+}
+
+body.escuro #botao-copiar:active {
+	transition: 100ms all;
+	background: #ffa30f;
+}
+
+body.escuro #botao-limpar:hover {
+	background: #ff1e1e;
+}
+
+body.escuro #botao-alternar-tema:hover {
+	background:#0066cc
+}
+body.escuro footer {
+	color: #696969;
+}

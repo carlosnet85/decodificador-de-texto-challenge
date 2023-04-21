@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criptografia vogalzilizada</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+  </head>
+  <body>
+	<div class = fundo-branco></div>
+	<div>
+		<h2 id = "titulo"> Criptografia de palavras </h2>
+		<p id = "descricao"> Criptografia de texto usando um método simples de substituição de vogais. É simples! Digite ou cole seu texto para tê-lo criptografado. <u>Letras maiúsculas e acentuação serão ignorados. </u></p>
+		<button id="botao-criptografar">Criptografar</button>
+		<button id="botao-descriptografar" class = "esconder">Descriptografar</button>
+		<button id="botao-copiar" onclick="copiarTexto()" ><img src="css/static/papel.png" width="30" height="30"></button>
+		<button id="botao-limpar"><img src="css/static/lixeira.png" width="30" height="30"></button>
+		<button id="botao-trocar-funcao"><img src="css/static/engrenagem.png" width="30" height="30"></button>
+		<button id="botao-alternar-tema"><img src="css/static/lampada.png" width="30" height="30"></button>
+		<textarea type="text" id="area-entrada" placeholder="Digite uma frase..."></textarea>
+		<p id="area-resultado" data-placeholder="<img src='css/static/detetive.png' width='180' height='180'>"></p>
+	</div>
+	<footer>Carlos Victor |  2023</footer>
+	</body>
+  <script src="script.js"></script>
+</html>
