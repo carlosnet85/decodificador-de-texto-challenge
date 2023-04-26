@@ -2,6 +2,10 @@
 	display: none;
 }
 
+#botao-info, #info-container {
+	display: none;
+}
+			
 #mensagem-copiar {
   position: absolute;
   bottom: 10px;
@@ -195,6 +199,10 @@ body.escuro #logoalura {
 
 /* CSS PARA TELAS MENORES */
 @media screen and (max-width: 800px) {
+   #botao-info, #info-container {
+	display: block;
+}
+
   body {
     display: block;
   }
@@ -202,27 +210,16 @@ body.escuro #logoalura {
   #titulo {
     margin-top: 20px;
     margin-bottom: 10px;
-    font-size: 35px;
+    font-size: 30px;
     font-weight: bold;
   }
 
   .descricao {
-    max-width: 96%;
-    font-size: 17px;
-    margin-left: 10px;
-	margin-bottom: 61vw;
+    display: none;
   }
 
   .container-logos {
-    position: absolute;
-    top: 75%;
-    left: 58%;
-  }
-
-  .container-logos img {
-    width: 13%;
-    margin-bottom: -23px;
-    margin-left: 5px;
+   display: none;
   }
 
   .fundo-cinza {
@@ -244,7 +241,7 @@ body.escuro #logoalura {
   }
   
   .campo-entrada, .campo-resultado {
-    margin-left: 10px;
+    margin-left: 13px;
     border: 3px solid transparent;
     border-image: linear-gradient(to right, #d385c2, #cba3d9) 1;
     box-shadow: 0 0 3vw rgb(200 200 200);
@@ -260,7 +257,16 @@ body.escuro #logoalura {
   }
 	
   #logo-alura {
-    margin-left: auto;
+    display: none;
+  }
+	
+  #botao-criptografar {
+	font-size: 12.5px;
+	
+  }
+	
+  #botao-descriptografar {
+	font-size: 10px;
   }
 	
   .fundo-cinza p {
@@ -268,5 +274,69 @@ body.escuro #logoalura {
     bottom: 10px;
     left: 10px;
     text-align: left;
+  }
+  
+  #botao-info {
+	width: 10%;
+	z-index: 999;
+  }
+
+  #info-container {
+	position: fixed;
+	top: -100%; 
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(0 0 0 / 50%); 
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	transition: top 0.5s ease-out; 
+	z-index: 998;
+  }
+
+  #info-container.mostrar {
+	top: 0; 
+  }
+
+  .alt-logos {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-top: 20px;
+  }
+
+  .alt-logos img {
+	max-width: 1000px;
+	margin: 10px;
+	filter: invert(1);
+  }
+
+  .feito-por {
+	display: flex;
+	align-items: center;
+	margin-top: 20px;
+	color: #e1d4e9;
+  }
+
+  .feito-por img {
+	max-width: 30px;
+	margin-left: 10px;
+  }
+
+  #alt-descricao {
+	font-size: 24px;
+	text-align: center;
+	margin-bottom: 20px;
+	color: #e1d4e9;
+  }
+
+  body.escuro .logos img {
+	filter: invert(0)
+  }
+
+  body.escuro .feito-por, body.escuro #alt-descricao {
+	color: #d4e0e9;
   }
 }
