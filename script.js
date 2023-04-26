@@ -82,3 +82,9 @@ toggleButton.addEventListener('click', function() {
   body.classList.toggle('escuro');
 });
 
+const botaoInfo = document.getElementById('botao-info');
+const infoContainer = document.getElementById('info-container');
+
+botaoInfo.addEventListener('click', () => {
+  infoContainer.classList.toggle('mostrar');
+});
