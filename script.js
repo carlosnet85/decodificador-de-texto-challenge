@@ -1,90 +1,108 @@
-function copiarTexto() {
-var text = document.querySelector(".campo-resultado").value;
-var textoCriptografado = document.createElement("textarea");
-textoCriptografado.value = text;
-document.body.appendChild(textoCriptografado);
-textoCriptografado.select();
-document.execCommand("copy");
-document.body.removeChild(textoCriptografado);
+let isRoleEncrypt = true;
+let isBase64Encryption = false;
 
-var mensagemCopiar = document.getElementById("mensagem-copiar");
-mensagemCopiar.innerHTML = "Texto copiado com sucesso";
-mensagemCopiar.style.opacity = 1;
+function encrypt(value) {
+  value = value.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
-setTimeout(function() {
-  mensagemCopiar.style.opacity = 0;
-}, 1000);
-};
-
-function removerAcentos(texto) {
-  return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-}
-
-function criptografar(texto) {
-  let criptografado = texto
+  const encrypted_value = value
     .replaceAll("e", "enter")
     .replaceAll("i", "imes")
     .replaceAll("a", "ai")
     .replaceAll("o", "ober")
     .replaceAll("u", "ufat");
-  return criptografado;
+
+  return encrypted_value;
 }
 
-function descriptografar(texto) {
-  let descriptografado = texto
+function decrypt(value) {
+  value = value.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+  const decrypted_value = value
     .replaceAll("enter", "e")
     .replaceAll("imes", "i")
     .replaceAll("ai", "a")
     .replaceAll("ober", "o")
     .replaceAll("ufat", "u");
-  return descriptografado;
+
+  return decrypted_value;
 }
 
-let botaoCriptografar = document.querySelector("#botao-criptografar");
-let botaoDescriptografar = document.querySelector("#botao-descriptografar");
-let botaoLimpar = document.querySelector("#botao-limpar");
-let botaoTrocarFuncao = document.querySelector("#botao-trocar-funcao");
+function handleEncrypt() {
+  let value = document.getElementById('input_textarea').value.toLowerCase();
 
-botaoCriptografar.addEventListener("click", () => {
-  let textoEntrada = document.querySelector(".campo-entrada").value.toLowerCase();
-  let textoSemAcentos = removerAcentos(textoEntrada);
-  let resultado = criptografar(textoSemAcentos);
-  document.querySelector(".campo-resultado").innerHTML = resultado.replaceAll("\n", "<br>");
-});
-
-botaoDescriptografar.addEventListener("click", () => {
-  let textoEntrada = document.querySelector(".campo-entrada").value.toLowerCase();
-  let textoSemAcentos = removerAcentos(textoEntrada);
-  let resultado = descriptografar(textoSemAcentos);
-  document.querySelector(".campo-resultado").innerHTML = resultado.replaceAll("\n", "<br>");
-});
-
-botaoLimpar.addEventListener("click", () => {
-  document.querySelector(".campo-entrada").value = "";
-  document.querySelector(".campo-resultado").textContent = "";
-});
-
-botaoTrocarFuncao.addEventListener("click", () => {
-  let textoEntrada = document.querySelector(".campo-entrada").value.toLowerCase();
-  let textoResultado = document.querySelector(".campo-resultado").textContent.toLowerCase();
-
-  if (botaoCriptografar.classList.contains("esconder")) {
-    botaoCriptografar.classList.remove("esconder");
-    botaoDescriptografar.classList.add("esconder");
+  if (value.length > 0) {
+    if (isRoleEncrypt) {
+      value = encrypt(value);
+    } else {
+      value = decrypt(value);
+    }
   } else {
-    botaoDescriptografar.classList.remove("esconder");
-    botaoCriptografar.classList.add("esconder");
-  }});
-  
-const toggleButton = document.getElementById('botao-alternar-tema');
-const body = document.querySelector('body');
-toggleButton.addEventListener('click', function() {
-  body.classList.toggle('escuro');
-});
+    value = "vazio infinito";
+  }
 
-const botaoInfo = document.getElementById('botao-info');
-const infoContainer = document.getElementById('info-container');
+  document.getElementById('output_textarea').value = value;
+}
 
-botaoInfo.addEventListener('click', () => {
-  infoContainer.classList.toggle('mostrar');
-});
+function handleRoleChange() {
+  isRoleEncrypt = !isRoleEncrypt;
+
+  if (isRoleEncrypt) {
+    document.getElementById('button_criptografar').textContent = 'Criptografar';
+  } else {
+    document.getElementById('button_criptografar').textContent = 'Descriptografar';
+  }
+
+  let inputText = document.getElementById('input_textarea').value;
+  let outputText = document.getElementById('output_textarea').value;
+  document.getElementById('input_textarea').value = outputText;
+  document.getElementById('output_textarea').value = inputText;
+}
+
+function handleClearTextArea() {
+  document.getElementById('input_textarea').value = "";
+  document.getElementById('output_textarea').value = "";
+}
+
+function handleCopyText() {
+  document.getElementById('output_textarea').select()
+  document.execCommand('copy');
+}
+
+function getHSL(hue, saturation, lightness) {
+  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+}
+
+function handleThemeColorChange() {
+  const hue = Math.floor(Math.random() * 360);
+
+  const random_color = getHSL(hue, 100, 70);
+  const random_color11 = getHSL(hue, 60, 60);
+
+  const random_color2 = getHSL(hue, 100, 35);
+  const random_color3 = getHSL(hue, 35, 20);
+  const random_color4 = getHSL(hue, 20, 10);
+  const random_color5 = getHSL(hue, 40, 15);
+
+  document.querySelector(':root').style.setProperty('--primary-color', random_color);
+  document.querySelector(':root').style.setProperty('--secondary-color', random_color2);
+  document.querySelector(':root').style.setProperty('--background-color', random_color3);
+  document.querySelector(':root').style.setProperty('--body-bg-color', random_color4);
+  document.querySelector(':root').style.setProperty('--container-border-color', random_color5);
+  document.querySelector(':root').style.setProperty('--hover-color', random_color11);
+}
+
+function handleShowInfo() {
+  document.getElementById('info').classList.toggle('extended');
+}
+
+function changeToBase64Encryption() {
+  isBase64Encryption = !isBase64Encryption;
+
+  if (isBase64Encryption) {
+    document.getElementById('button_encryptionMethod').textContent = "Mudar para criptografia padrão";
+  } else {
+    document.getElementById('button_encryptionMethod').textContent = "Mudar para criptografia com Base64";
+  }
+}
+
+handleThemeColorChange();
